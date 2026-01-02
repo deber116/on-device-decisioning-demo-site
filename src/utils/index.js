@@ -9,16 +9,16 @@ it.
 
 import window from "global/window";
 
-const fireCustomEvent = (name , target, data) => {
+const fireCustomEvent = (name, target, data) => {
   notify("Firing Custom Event " + name + " with event data ", data);
-  var event=new CustomEvent(name, data);
+  var event = new CustomEvent(name, data);
   var obj = target.dispatchEvent(event);
 }
 
 const notify = (message, data = "", mode = 5) => {
   var prefix = "ACT:";
 
-  if(location.href.indexOf("actDebug=") < 0) {
+  if (location.href.indexOf("actDebug=") < 0) {
     return false;
   }
 
@@ -34,7 +34,7 @@ const notify = (message, data = "", mode = 5) => {
       break;
     case 3:
       console.count && console.count(prefix + message);
-        break;
+      break;
     default:
       console.info && console.info(prefix, message, data);
   }
@@ -47,7 +47,7 @@ export {
 
 
 var a = "adobe", c = "consulting", t = "target";
-window[a]=window[a]||{};
-window[a][c]=window[a][c]||{};
-window[a][c][t]=window[a][c][t]||{};
+window[a] = window[a] || {};
+window[a][c] = window[a][c] || {};
+window[a][c][t] = window[a][c][t] || {};
 window[a][c][t].notify = window[a][c][t].notify || notify;

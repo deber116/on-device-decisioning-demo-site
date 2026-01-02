@@ -8,11 +8,24 @@ it.
 */
 
 import React, { Component } from 'react'
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet"
 import { generate } from 'randomstring'
 
+/**
+ * Confirm Container Component
+ * 
+ * Displays order confirmation page after successful checkout.
+ * Shows order number and confirmation message to the user.
+ * 
+ * @class Confirm
+ * @extends {Component}
+ */
 class Confirm extends Component {
 
+	/**
+	 * Renders the Confirm component
+	 * @returns {JSX.Element} The rendered component
+	 */
 	render() {
 		return (
 			<div>
@@ -22,7 +35,7 @@ class Confirm extends Component {
 						<div className="heading">
 							<h1 className="title">Order Confirmation</h1>
 						</div>
-            <p>Thank you for your order.</p>
+						<p>Thank you for your order.</p>
 						<h2><span className="badge badge-success">Order Number: {generate(10)}</span></h2>
 					</div>
 				</section>

@@ -49,9 +49,9 @@ class NavBar extends Component {
 				<nav className="nav has-shadow">
 					<div className="container">
 						<div className="nav-left">
-							<Link to="/"  className="nav-item">
-								<img src="https://cimage.adobe.com/acs/reactreduxdemo/logo.png" title = "A Shop" alt="A Shop" />
-								<img src="https://cimage.adobe.com/acs/reactreduxdemo/adobev1-on-device.png" title = "Demo for Adobe Target On Device Decisioning capabilites" alt="Demo for Adobe Target On Device Decisioning capabilites" />
+							<Link to="/" className="nav-item">
+								<img src="https://cimage.adobe.com/acs/reactreduxdemo/logo.png" title="A Shop" alt="A Shop" />
+								<img src="https://cimage.adobe.com/acs/reactreduxdemo/adobev1-on-device.png" title="Demo for Adobe Target On Device Decisioning capabilites" alt="Demo for Adobe Target On Device Decisioning capabilites" />
 							</Link>
 						</div>
 						<div className={`nav-right nav-menu ${(this.state.showBar) ? 'is-active' : ''}`}>
@@ -67,25 +67,25 @@ class NavBar extends Component {
 							<Link to="/docs" className="nav-item">
 								<strong>Docs</strong>
 							</Link>
-								<div key = "NavBarCart" className="nav-item">
-									<Link to="/cart" className="button menu" >
-										<span className="icon">
-											<i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
-										</span>
-										<span className="tag is-light">{Object.keys(this.props.cart).length}</span>
-									</Link>
-									<Link to="/wishlist" className="button menu">
-										<span className="icon">
-											<i className="fa fa-thumbs-up" aria-hidden="true"></i>
-										</span>
-										<span className="tag is-light">{Object.keys(this.props.wishlist).length}</span>
-									</Link>
-								</div>
+							<div key="NavBarCart" className="nav-item">
+								<Link to="/cart" className="button menu" >
+									<span className="icon">
+										<i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
+									</span>
+									<span className="tag is-light">{Object.keys(this.props.cart).length}</span>
+								</Link>
+								<Link to="/wishlist" className="button menu">
+									<span className="icon">
+										<i className="fa fa-thumbs-up" aria-hidden="true"></i>
+									</span>
+									<span className="tag is-light">{Object.keys(this.props.wishlist).length}</span>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</nav>
 				<br></br>
-				<div className = "notice container">
+				<div className="notice container">
 					This website demonstrates Adobe Target's On Device Decisioning capabilites
 				</div>
 				<br></br>

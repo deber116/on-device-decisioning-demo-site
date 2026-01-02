@@ -9,7 +9,7 @@ it.
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet"
 import { fetchProducts } from '../actions/fetchProducts'
 import { fetchCart } from '../actions/fetchCart'
 import { removeFromCart } from '../actions/removeFromCart'
@@ -17,9 +17,24 @@ import CartItem from '../components/CartItem'
 import { Link } from 'react-router-dom'
 
 /**
- * Create Cart Container
+ * Cart Container Component
+ * 
+ * Displays the shopping cart with cart items and checkout functionality.
+ * Manages cart operations like removing items and calculating totals.
+ * 
+ * @class Cart
+ * @extends {Component}
+ * @param {Object} props - Component props
+ * @param {Array} props.products - Array of all products from Redux store
+ * @param {Array} props.cart - Array of cart items from Redux store
+ * @param {Function} props.dispatch - Redux dispatch function
  */
 class Cart extends Component {
+	/**
+	 * Gets a product by its ID from the products array
+	 * @param {string|number} id - Product ID to find
+	 * @returns {Object} Product object or empty object if not found
+	 */
 	getItemById(id) {
 		let obj = {}
 		this.props.products.map((item) => {
@@ -27,10 +42,19 @@ class Cart extends Component {
 		})
 		return obj
 	}
+
+	/**
+	 * Handles removing an item from the cart
+	 * @param {string|number} key - Cart item key to remove
+	 */
 	handleTrash(key) {
 		const { dispatch } = this.props
 		dispatch(removeFromCart(key))
 	}
+	/**
+	 * Calculates the total price of all items in the cart
+	 * @returns {Array<number>} Array of prices for all cart items
+	 */
 	totalPricesArray() {
 		let cartItems = this.props.cart
 		let getPricesById = (id) => { return this.getItemById(id).price }
@@ -40,18 +64,27 @@ class Cart extends Component {
 		})
 		return prices
 	}
+
+	/**
+	 * Lifecycle method called after component mounts
+	 * Fetches products and cart data from the API
+	 */
 	componentDidMount() {
 		const { dispatch } = this.props
 		dispatch(fetchProducts())
 		dispatch(fetchCart())
 	}
+	/**
+	 * Renders the Cart component
+	 * @returns {JSX.Element} The rendered component
+	 */
 	render() {
 		let total = this.totalPricesArray().reduce(function (prev, next) {
 			return prev + next;
 		}, 0)
 		let checkoutButton = total > 0 ? <Link to="/checkout" className="btn btn-primary btn-lg">Checkout your order</Link> : "";
 		return (
-			
+
 			<div>
 				<Helmet title="My Cart" />
 				<section className="section">
@@ -93,7 +126,13 @@ class Cart extends Component {
 	}
 }
 /**
- * Insert Props Into Component
+ * Maps Redux state to component props
+ * @param {Object} state - Redux store state
+ * @param {Object} state.ProductsReducer - Products reducer state
+ * @param {Array} state.ProductsReducer.data - Array of products
+ * @param {Object} state.CartReducer - Cart reducer state
+ * @param {Object} state.CartReducer.data - Cart items data
+ * @returns {Object} Props object for the component
  */
 const stateProps = (state) => {
 	return {
