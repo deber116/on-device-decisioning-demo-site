@@ -7,7 +7,6 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-var webpack = require('webpack');
 var path = require('path');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { options } = require('yargs');
@@ -21,17 +20,13 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'],
-        alias: { 
+        alias: {
             "crypto": require.resolve("crypto-browserify"),
             "stream": require.resolve("stream-browserify"),
-            "buffer": require.resolve("buffer/")
         }
     },
     plugins: [
         new CaseSensitivePathsPlugin(),
-        new webpack.ProvidePlugin({
-            process: 'process/browser',
-        })
     ],
     module: {
         rules: [{

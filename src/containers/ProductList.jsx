@@ -23,7 +23,6 @@ import Button from 'react-bootstrap/Button';
 
 import { Helmet } from "react-helmet"
 import Slider from "react-slick"
-const TargetClientPList = require("@adobe/target-nodejs-sdk");
 
 /**
  * ProductList Container Component
