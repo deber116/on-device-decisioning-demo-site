@@ -7,6 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
+var webpack = require('webpack');
 var path = require('path');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { options } = require('yargs');
@@ -27,6 +28,9 @@ module.exports = {
     },
     plugins: [
         new CaseSensitivePathsPlugin(),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+        })
     ],
     module: {
         rules: [{
