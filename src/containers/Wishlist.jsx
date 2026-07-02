@@ -9,16 +9,31 @@ it.
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet"
 import { fetchWishlist } from '../actions/fetchWishlist'
 import { fetchProducts } from '../actions/fetchProducts'
 import WishlistItem from '../components/WishlistItem'
 import { removeFromWishlist } from '../actions/removeFromWishlist'
 
 /**
- * Create Wishlist Container
+ * Wishlist Container Component
+ * 
+ * Displays the user's wishlist with wishlist items and management functionality.
+ * Allows users to view and remove items from their wishlist.
+ * 
+ * @class Wishlist
+ * @extends {Component}
+ * @param {Object} props - Component props
+ * @param {Array} props.products - Array of all products from Redux store
+ * @param {Array} props.wishlist - Array of wishlist items from Redux store
+ * @param {Function} props.dispatch - Redux dispatch function
  */
 class Wishlist extends Component {
+	/**
+	 * Gets a product by its ID from the products array
+	 * @param {string|number} id - Product ID to find
+	 * @returns {Object} Product object or empty object if not found
+	 */
 	getItemById(id) {
 		let obj = {}
 		this.props.products.map((item) => {
@@ -26,15 +41,28 @@ class Wishlist extends Component {
 		})
 		return obj
 	}
+
+	/**
+	 * Handles removing an item from the wishlist
+	 * @param {string|number} key - Wishlist item key to remove
+	 */
 	handleTrash(key) {
 		const { dispatch } = this.props
 		dispatch(removeFromWishlist(key))
 	}
+	/**
+	 * Lifecycle method called after component mounts
+	 * Fetches products and wishlist data from the API
+	 */
 	componentDidMount() {
 		const { dispatch } = this.props
 		dispatch(fetchProducts())
 		dispatch(fetchWishlist())
 	}
+	/**
+	 * Renders the Wishlist component
+	 * @returns {JSX.Element} The rendered component
+	 */
 	render() {
 		return (
 			<div>
@@ -69,7 +97,13 @@ class Wishlist extends Component {
 	}
 }
 /**
- * Insert Props Into Component
+ * Maps Redux state to component props
+ * @param {Object} state - Redux store state
+ * @param {Object} state.ProductsReducer - Products reducer state
+ * @param {Array} state.ProductsReducer.data - Array of products
+ * @param {Object} state.WishlistReducer - Wishlist reducer state
+ * @param {Object} state.WishlistReducer.data - Wishlist items data
+ * @returns {Object} Props object for the component
  */
 const stateProps = (state) => {
 	return {

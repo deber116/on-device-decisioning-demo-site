@@ -10,7 +10,7 @@ it.
 import React, { Component } from 'react'
 import NavBar from './NavBar'
 import Footer from '../components/Footer'
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet"
 import Laoding from '../components/Laoding'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
@@ -25,10 +25,22 @@ import Products from './Products'
 import SingleProduct from './SingleProduct'
 
 /**
- * Create App Component
+ * Main App Component
+ * 
+ * Root component that handles routing and application layout.
+ * Manages navigation between different pages and provides global layout structure.
+ * 
+ * @class App
+ * @extends {Component}
+ * @param {Object} props - Component props
+ * @param {boolean} props.loading - Loading state from Redux store
  */
 class App extends Component {
-	
+
+	/**
+	 * Renders the main App component with routing
+	 * @returns {JSX.Element} The rendered component
+	 */
 	render() {
 
 		return (
@@ -37,7 +49,7 @@ class App extends Component {
 				<Laoding loading={this.props.loading} />
 				<NavBar />
 				<Switch>
-					<Route exact path="/" component={ProductList}/>
+					<Route exact path="/" component={ProductList} />
 					<Route path="/sdks" component={About} />
 					<Route path="/cart" component={Cart} />
 					<Route path="/wishlist" component={Wishlist} />
@@ -45,14 +57,21 @@ class App extends Component {
 					<Route path="/confirm" component={Confirm} />
 					<Route path="/products" component={Products} />
 					<Route path="/checkout" component={Checkout} />
-					<Route path="/product/:id" component={SingleProduct} onEnter={ () => store.dispatch({type:'CLEAR_PRODUCT'}) } />
+					<Route path="/product/:id" component={SingleProduct} onEnter={() => store.dispatch({ type: 'CLEAR_PRODUCT' })} />
 				</Switch>
 				<Footer />
-			</div>		
+			</div>
 		)
 	}
 }
 
+/**
+ * Maps Redux state to component props
+ * @param {Object} state - Redux store state
+ * @param {Object} state.LoadingReducer - Loading reducer state
+ * @param {boolean} state.LoadingReducer.isVisible - Whether loading indicator is visible
+ * @returns {Object} Props object for the component
+ */
 const stateProps = (state) => {
 	return {
 		loading: state.LoadingReducer.isVisible
