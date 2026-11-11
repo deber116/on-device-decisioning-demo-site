@@ -101,6 +101,35 @@
 .cart-item-price {
   white-space: nowrap; }
 
+.cart-table a {
+  color: #cd1e27; }
+
+.cart-table a:hover,
+.cart-table a:focus {
+  color: #a41c23; }
+
+.cart-checkout {
+  background-color: #cd1e27;
+  border-color: #cd1e27;
+  color: #ffffff; }
+
+.cart-checkout:hover,
+.cart-checkout:focus {
+  background-color: #a41c23;
+  border-color: #a41c23;
+  color: #ffffff; }
+
+.cart-table .button.is-danger.is-outlined {
+  color: #cd1e27;
+  border-color: #cd1e27;
+  background-color: transparent; }
+
+.cart-table .button.is-danger.is-outlined:hover,
+.cart-table .button.is-danger.is-outlined:focus {
+  background-color: #cd1e27;
+  border-color: #cd1e27;
+  color: #ffffff; }
+
 body.isLoading {
   overflow: hidden; }
 

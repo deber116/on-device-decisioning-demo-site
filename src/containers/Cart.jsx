@@ -82,7 +82,7 @@ class Cart extends Component {
 		let total = this.totalPricesArray().reduce(function (prev, next) {
 			return prev + next;
 		}, 0)
-		let checkoutButton = total > 0 ? <Link to="/checkout" className="btn btn-primary btn-lg">Checkout your order</Link> : "";
+		let checkoutButton = total > 0 ? <Link to="/checkout" className="btn btn-lg cart-checkout">Checkout your order</Link> : "";
 		return (
 
 			<div>
