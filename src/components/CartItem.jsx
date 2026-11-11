@@ -14,11 +14,20 @@ import { Link } from 'react-router-dom'
  */
 class CartItem extends Component {
     render() {
+        const product = this.props.product || {}
         return (
             <tr>
-                <td>{this.props.product.id}</td>
-                <td><Link to={`/product/${this.props.product.id}`}>{this.props.product.title}</Link></td>
-                <td>{this.props.product.price} USD</td>
+                <td>
+                    <article className="media cart-item">
+                        <figure className="media-left">
+                            {product.image ? <img className="cart-item-thumb" src={product.image} alt={product.title || 'Cart item'} /> : null}
+                        </figure>
+                        <div className="media-content">
+                            <Link to={`/product/${product.id}`}>{product.title}</Link>
+                        </div>
+                    </article>
+                </td>
+                <td className="cart-item-price">{product.price} USD</td>
                 <td>
                     <a href="#" className="button is-danger is-outlined" onClick={(e) => {
                         e.preventDefault()
