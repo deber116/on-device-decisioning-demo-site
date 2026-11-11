@@ -45,15 +45,15 @@ class App extends Component {
 
 		return (
 			<div>
-				<Helmet titleTemplate="ACS Demo - %s" />
+				<Helmet titleTemplate="A Shop - %s" defaultTitle="A Shop" />
 				<Laoding loading={this.props.loading} />
 				<NavBar />
 				<Switch>
 					<Route exact path="/" component={ProductList} />
-					<Route path="/sdks" component={About} />
+					<Route path="/tools" component={About} />
 					<Route path="/cart" component={Cart} />
 					<Route path="/wishlist" component={Wishlist} />
-					<Route path="/docs" component={Launch} />
+					<Route path="/help" component={Launch} />
 					<Route path="/confirm" component={Confirm} />
 					<Route path="/products" component={Products} />
 					<Route path="/checkout" component={Checkout} />

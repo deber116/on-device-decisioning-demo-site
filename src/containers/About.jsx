@@ -15,34 +15,12 @@ import { Helmet } from "react-helmet"
 /**
  * About Container Component
  * 
- * Displays information about the Adobe Target SDKs and their capabilities.
- * Fetches and renders about content from the API.
+ * Displays information about the shop and available tools.
  * 
  * @class About
  * @extends {Component}
- * @param {Object} props - Component props
- * @param {Object} props.about - About content from Redux store
- * @param {Function} props.dispatch - Redux dispatch function
  */
 class About extends Component {
-	/**
-	 * Creates an instance of About
-	 * @param {Object} props - Component props
-	 */
-	constructor(props) {
-		super(props);
-		// this.converter = new ReactHTMLConverter();
-		// this.converter.registerComponent('helmet', Helmet);
-	}
-
-	/**
-	 * Lifecycle method called after component mounts
-	 * Fetches about content from the API
-	 */
-	componentDidMount() {
-		const { dispatch } = this.props
-		dispatch(fetchAbout())
-	}
 	/**
 	 * Renders the About component
 	 * @returns {JSX.Element} The rendered component
@@ -51,19 +29,26 @@ class About extends Component {
 		return (
 
 			<div>
-				<Helmet title="About Demo" />
+				<Helmet title="Developer Tools" />
 				<section className="section">
 					<div className="container">
 						<div className="heading">
 							<h1 className="title">
-								{/* {this.props.about.title} */}
-								SDK Details
+								Developer Tools
 							</h1>
 						</div>
 						<p>
-							{/* {this.props.about.content} */}
-							This page will list all the Adobe Target SDK locations for various platforms
+							This demo storefront showcases a server-side-rendered React application with Express.
+							It includes features like shopping cart management, product browsing, and wishlist functionality.
 						</p>
+						<br />
+						<h2 className="subtitle">Technology Stack</h2>
+						<ul>
+							<li>React 16 with server-side rendering</li>
+							<li>Redux for state management</li>
+							<li>Express.js backend</li>
+							<li>Webpack build system</li>
+						</ul>
 					</div>
 				</section>
 			</div>

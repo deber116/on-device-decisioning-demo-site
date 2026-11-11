@@ -29,7 +29,7 @@ const receiveProduct = (data,id) => {
 export  const fetchProduct = (id) => {
  	return dispatch => {
  		dispatch(requestProduct())
- 		return axios.get(`https://e-commerce-react-redux-demo.firebaseio.com/products.json`)
+ 		return axios.get(`/products.json`)
  		.then(response => response)
  		.then(json => {
  			dispatch(receiveProduct(json.data,id))

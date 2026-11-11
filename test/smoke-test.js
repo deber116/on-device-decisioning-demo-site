@@ -7,17 +7,21 @@ const http = require('http');
 const { spawn } = require('child_process');
 
 const PORT = 3006;
-const STARTUP_TIMEOUT = 15000; // 15 seconds for server startup (includes artifact download)
+const STARTUP_TIMEOUT = 30000; // 30 seconds for server startup
 const REQUEST_TIMEOUT = 5000;
 
-function makeRequest() {
+function makeRequest(path = '/') {
   return new Promise((resolve, reject) => {
-    const req = http.get(`http://localhost:${PORT}/`, { timeout: REQUEST_TIMEOUT }, (res) => {
-      if (res.statusCode === 200) {
-        resolve({ statusCode: res.statusCode });
-      } else {
-        reject(new Error(`Unexpected status code: ${res.statusCode}`));
-      }
+    const req = http.get(`http://localhost:${PORT}${path}`, { timeout: REQUEST_TIMEOUT }, (res) => {
+      let body = '';
+      res.on('data', chunk => body += chunk);
+      res.on('end', () => {
+        resolve({ 
+          statusCode: res.statusCode, 
+          headers: res.headers,
+          body: body
+        });
+      });
     });
 
     req.on('error', reject);
@@ -56,6 +60,8 @@ async function runTest() {
     process.stderr.write(text);
   });
 
+  let exitCode = 0;
+  
   try {
     // Wait for server to start
     const startTime = Date.now();
@@ -70,19 +76,40 @@ async function runTest() {
     console.log('Server started successfully. Testing homepage...');
 
     // Test homepage
-    const response = await makeRequest();
+    const response = await makeRequest('/');
+    if (response.statusCode !== 200) {
+      throw new Error(`Homepage returned HTTP ${response.statusCode}`);
+    }
     console.log(`✓ Homepage returned HTTP ${response.statusCode}`);
 
-    // Test a few more routes to ensure routing works
+    // Test products.json endpoint
+    const productsResponse = await makeRequest('/products.json');
+    if (productsResponse.statusCode !== 200) {
+      throw new Error(`/products.json returned HTTP ${productsResponse.statusCode}`);
+    }
+    const contentType = productsResponse.headers['content-type'];
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`/products.json returned wrong content-type: ${contentType}`);
+    }
+    if (productsResponse.body.trim().startsWith('<')) {
+      throw new Error('/products.json returned HTML instead of JSON');
+    }
+    try {
+      JSON.parse(productsResponse.body);
+    } catch (parseError) {
+      throw new Error(`/products.json returned invalid JSON: ${parseError.message}`);
+    }
+    console.log('✓ /products.json returned valid JSON');
+
     console.log('✓ Smoke test passed!');
-    process.exit(0);
 
   } catch (error) {
     console.error('✗ Smoke test failed:', error.message);
     console.error('Server output:', serverOutput);
-    process.exit(1);
+    exitCode = 1;
   } finally {
     server.kill();
+    process.exit(exitCode);
   }
 }
 

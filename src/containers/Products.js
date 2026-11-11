@@ -52,7 +52,7 @@ class Products extends Component {
 	/**
 	 * Adds a product to the shopping cart
 	 * @param {string|number} id - Product ID to add to cart
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	addToCart(id, target) {
 		const { dispatch } = this.props
@@ -62,7 +62,7 @@ class Products extends Component {
 	/**
 	 * Adds a product to the wishlist
 	 * @param {string|number} id - Product ID to add to wishlist
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	addToWishlist(id, target) {
 		const { dispatch } = this.props
@@ -72,7 +72,7 @@ class Products extends Component {
 	/**
 	 * Removes a product from the wishlist
 	 * @param {string|number} id - Product ID to remove from wishlist
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	removeFromWishlist(id, target) {
 		const { dispatch } = this.props
@@ -82,7 +82,7 @@ class Products extends Component {
 	/**
 	 * Removes a product from the shopping cart
 	 * @param {string|number} id - Product ID to remove from cart
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	removeFromCart(id, target) {
 		const { dispatch } = this.props

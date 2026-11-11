@@ -16,9 +16,6 @@ import { addToWishlist } from '../actions/addToWishlist'
 import { removeFromWishlist } from '../actions/removeFromWishlist'
 import { removeFromCart } from '../actions/removeFromCart'
 import TargetContext from '../contexts/TargetContext';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import Button from 'react-bootstrap/Button';
 
 
 import { Helmet } from "react-helmet"
@@ -27,8 +24,8 @@ import Slider from "react-slick"
 /**
  * ProductList Container Component
  * 
- * Displays a paginated list of products on the home page with Adobe Target integration.
- * Features include product carousel, pagination controls, and Target activity visualization.
+ * Displays a paginated list of products on the home page.
+ * Features include product carousel and pagination controls.
  * 
  * @class ProductList
  * @extends {Component}
@@ -59,7 +56,7 @@ class ProductList extends Component {
 	/**
 	 * Adds a product to the shopping cart
 	 * @param {string|number} id - Product ID to add to cart
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	addToCart(id, target) {
 		const { dispatch } = this.props
@@ -69,7 +66,7 @@ class ProductList extends Component {
 	/**
 	 * Adds a product to the wishlist
 	 * @param {string|number} id - Product ID to add to wishlist
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	addToWishlist(id, target) {
 		const { dispatch } = this.props
@@ -79,7 +76,7 @@ class ProductList extends Component {
 	/**
 	 * Removes a product from the wishlist
 	 * @param {string|number} id - Product ID to remove from wishlist
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	removeFromWishlist(id, target) {
 		const { dispatch } = this.props
@@ -89,7 +86,7 @@ class ProductList extends Component {
 	/**
 	 * Removes a product from the shopping cart
 	 * @param {string|number} id - Product ID to remove from cart
-	 * @param {Object} target - Adobe Target context object
+	 * @param {Object} target - Context object
 	 */
 	removeFromCart(id, target) {
 		const { dispatch } = this.props
@@ -227,28 +224,18 @@ class ProductList extends Component {
 					<div className="container">
 
 						<Slider data-section-name="jsx_homepagebanner_offer" {...settings}>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/easter.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/discount.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/happy.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/family.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/percent.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/bigsale.png" /></div>
+							<div><img src="/assets/images/carousel/easter.png" /></div>
+							<div><img src="/assets/images/carousel/discount.png" /></div>
+							<div><img src="/assets/images/carousel/happy.png" /></div>
+							<div><img src="/assets/images/carousel/family.png" /></div>
+							<div><img src="/assets/images/carousel/percent.png" /></div>
+							<div><img src="/assets/images/carousel/bigsale.png" /></div>
 						</Slider>
 
 					</div>
 					<br></br><br></br>
 					<div className="container">
 						<div className="heading">
-
-
-							<TargetContext.Consumer>
-								{content => {
-									//Used to display meta data about Target Activity when enabled using "sessionStorage.setItem(true)" 
-									// Not part of Target Implementation
-									return showTarget(content);
-								}}
-							</TargetContext.Consumer>
-
 
 							<TargetContext.Consumer>
 								{content => {
