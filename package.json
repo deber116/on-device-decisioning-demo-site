@@ -10,7 +10,9 @@
     "start": "node ./server-build/index.js",
     "dev:build-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development",
     "dev:start": "nodemon --ignore './src/config/' ./server-build/index.js",
-    "dev": "npm-run-all --sequential build-dev dev:*"
+    "dev": "npm-run-all --sequential build-dev dev:*",
+    "test": "node test/smoke-test.js",
+    "ci": "npm run build && npm run build-server && npm run test"
   },
   "author": "Bennet Roy Joseph",
   "license": "ISC",
