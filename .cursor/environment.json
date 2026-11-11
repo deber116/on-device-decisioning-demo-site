@@ -1,0 +1,13 @@
+{
+  "name": "on-device-decisioning-demo",
+  "version": "1",
+  "install": "npm ci",
+  "egress": {
+    "allowedDomains": [
+      "assets.adobetarget.com"
+    ]
+  },
+  "environmentVariables": {
+    "NODE_OPTIONS": "--openssl-legacy-provider"
+  }
+}
