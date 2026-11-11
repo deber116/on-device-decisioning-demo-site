@@ -80,6 +80,17 @@ adding a promotional banner or seasonal message).
 Port is `3006`, defined in `src/config/server.js` (overridable via `PORT` env
 var). If you change it there, rebuild the server bundle for `npm run start`.
 
+### External runtime dependencies
+
+**Product catalog**: Fully local. All product images and `products.json` are
+served from the local filesystem under `public/`.
+
+**Cart and Wishlist**: Still use the original shared Firebase backend at
+`e-commerce-react-redux-demo.firebaseio.com` for add-to-cart, wishlist
+management, and checkout. This is intentional to demonstrate realistic
+persistence without requiring local database setup. If Firebase is unavailable,
+cart/wishlist features may fail, but homepage and product browsing work normally.
+
 ## CI/CD
 
 ### GitHub Actions
