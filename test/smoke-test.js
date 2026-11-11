@@ -77,6 +77,9 @@ async function runTest() {
 
     // Test homepage
     const response = await makeRequest('/');
+    if (response.statusCode !== 200) {
+      throw new Error(`Homepage returned HTTP ${response.statusCode}`);
+    }
     console.log(`✓ Homepage returned HTTP ${response.statusCode}`);
 
     // Test products.json endpoint
@@ -90,6 +93,11 @@ async function runTest() {
     }
     if (productsResponse.body.trim().startsWith('<')) {
       throw new Error('/products.json returned HTML instead of JSON');
+    }
+    try {
+      JSON.parse(productsResponse.body);
+    } catch (parseError) {
+      throw new Error(`/products.json returned invalid JSON: ${parseError.message}`);
     }
     console.log('✓ /products.json returned valid JSON');
 
