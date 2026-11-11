@@ -33,7 +33,8 @@ to set it manually in Cloud Agent environments.
 ### Quick start
 ```bash
 # Install dependencies
-npm ci
+# Note: Use --legacy-peer-deps due to simpleform React 15 peer dependency conflict
+npm ci --legacy-peer-deps
 
 # Build everything
 NODE_OPTIONS=--openssl-legacy-provider npm run build
@@ -160,8 +161,8 @@ When demonstrating Cursor Automations with a PM persona, typical changes include
 - **Impact**: Warning only, doesn't affect functionality
 - **Demo impact**: None - warning is cosmetic
 
-### Old dependencies
-- **Current state**: React 16, old versions of various packages
-- **Impact**: Functional but dated; works fine for demo purposes
-- **Demo impact**: None - system is stable
+### Old dependencies and peer dependency conflicts
+- **Current state**: React 16, old versions of various packages; simpleform@0.1.3 has React 15 peer dependency
+- **Impact**: Functional but dated; works fine for demo purposes; requires `--legacy-peer-deps` for fresh installs
+- **Demo impact**: None - system is stable and GitHub Actions CI handles this automatically
 - **Note**: Avoid broad dependency upgrades unless absolutely necessary to fix blocking issues
