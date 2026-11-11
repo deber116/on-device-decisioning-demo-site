@@ -16,9 +16,9 @@ import store from './store'
 import { BrowserRouter } from 'react-router-dom'
 
 /**
- * Adobe Target Client-Side Application Initialization
+ * Client-Side Application Initialization
  * 
- * Global application object that initializes the React app with Target personalization data.
+ * Global application object that initializes the React app.
  * This object is called from the server-side rendered HTML to hydrate the client-side React app.
  */
 

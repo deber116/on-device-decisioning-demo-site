@@ -60,11 +60,11 @@ class NavBar extends Component {
 							<Link to="/products" className="nav-item">
 								Products
 							</Link>
-							<Link to="/sdks" className="nav-item">
-								<strong>Tools</strong>
+							<Link to="/tools" className="nav-item">
+								Tools
 							</Link>
-							<Link to="/docs" className="nav-item">
-								<strong>Help</strong>
+							<Link to="/help" className="nav-item">
+								Help
 							</Link>
 							<div key="NavBarCart" className="nav-item">
 								<Link to="/cart" className="button menu" >

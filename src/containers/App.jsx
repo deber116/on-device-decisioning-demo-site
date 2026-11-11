@@ -50,10 +50,10 @@ class App extends Component {
 				<NavBar />
 				<Switch>
 					<Route exact path="/" component={ProductList} />
-					<Route path="/sdks" component={About} />
+					<Route path="/tools" component={About} />
 					<Route path="/cart" component={Cart} />
 					<Route path="/wishlist" component={Wishlist} />
-					<Route path="/docs" component={Launch} />
+					<Route path="/help" component={Launch} />
 					<Route path="/confirm" component={Confirm} />
 					<Route path="/products" component={Products} />
 					<Route path="/checkout" component={Checkout} />

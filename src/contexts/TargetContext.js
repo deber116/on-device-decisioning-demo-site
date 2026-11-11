@@ -10,10 +10,9 @@ it.
 import React from 'react';
 
 /**
- * Adobe Target Context
+ * Context for application data
  * 
- * React Context for sharing Adobe Target personalization data across components.
- * Provides access to Target offers, feature flags, and attributes throughout the application.
+ * React Context for sharing application data across components.
  * 
  * @type {React.Context}
  * @property {Object} value - Target context value containing personalization data

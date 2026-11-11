@@ -44,10 +44,3 @@ export {
   fireCustomEvent,
   notify
 }
-
-
-var a = "adobe", c = "consulting", t = "target";
-window[a] = window[a] || {};
-window[a][c] = window[a][c] || {};
-window[a][c][t] = window[a][c][t] || {};
-window[a][c][t].notify = window[a][c][t].notify || notify;

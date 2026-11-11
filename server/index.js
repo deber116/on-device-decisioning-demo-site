@@ -39,6 +39,15 @@ app.use('/product/assets', express.static(path.resolve('./public/assets')));
  * Main application entry point that handles all routes and renders React components.
  */
 function startApp() {
+  // Serve favicon files explicitly before catch-all route
+  app.get('/favicon.svg', (req, res) => {
+    res.sendFile(path.resolve('./public/favicon.svg'));
+  });
+  
+  app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.resolve('./public/favicon.ico'));
+  });
+
   app.get('/*', (req, res) => {
 
     // Empty attributes object - personalization features removed
