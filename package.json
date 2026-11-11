@@ -17,7 +17,6 @@
   "author": "Bennet Roy Joseph",
   "license": "ISC",
   "dependencies": {
-    "@adobe/target-nodejs-sdk": "^2.0.0-alpha.26",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "buffer": "^6.0.3",

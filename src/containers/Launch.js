@@ -13,48 +13,43 @@ import { fetchLaunch } from '../actions/fetchLaunch'
 import { Helmet } from "react-helmet"
 
 /**
- * Launch Container Component
+ * Documentation Container Component
  * 
- * Displays information about Adobe Launch and its capabilities.
- * Fetches and renders launch content from the API.
+ * Displays documentation and help information.
  * 
  * @class Launch
  * @extends {Component}
- * @param {Object} props - Component props
- * @param {Object} props.launch - Launch content from Redux store
- * @param {Function} props.dispatch - Redux dispatch function
  */
 class Launch extends Component {
 	/**
-	 * Lifecycle method called after component mounts
-	 * Fetches launch content from the API
-	 */
-	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(fetchLaunch());
-	}
-
-	/**
-	 * Renders the Launch component
+	 * Renders the Documentation component
 	 * @returns {JSX.Element} The rendered component
 	 */
 	render() {
 		return (
 
 			<div>
-				<Helmet title="About Launch by Adobe" />
+				<Helmet title="Documentation" />
 				<section className="section">
 					<div className="container">
 						<div className="heading">
 							<h1 className="title">
-								{/* {this.props.about.title} */}
-								Documentation details.
+								Documentation & Help
 							</h1>
 						</div>
 						<p>
-							{/* {this.props.about.content} */}
-							This page will list the URLs for documentation on Adobe Target On Device Decisioning.
+							Welcome to A Shop! This is a demo e-commerce application built with modern web technologies.
 						</p>
+						<br />
+						<h2 className="subtitle">Features</h2>
+						<ul>
+							<li>Browse products and view details</li>
+							<li>Add items to your shopping cart</li>
+							<li>Save items to your wishlist</li>
+							<li>Secure checkout process (demo only - no real transactions)</li>
+						</ul>
+						<br />
+						<p><strong>Note:</strong> All transactions on this site are simulated for demonstration purposes only.</p>
 					</div>
 				</section>
 			</div>

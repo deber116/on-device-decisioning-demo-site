@@ -17,9 +17,8 @@ class Footer extends Component {
       <footer className="footer">
         <div className="container">
             <p>
-              Transactions on this site are not real. <br></br>
-              Forked from <a href="https://github.com/david-babunashvili/React-Redux-Ecommerce">GitHub</a><br></br>
-              File bugs and feedback under <a href= "https://github.com/adobe/on-device-decisioning-demo-site/issues">Feedback and Issues</a>
+              Transactions on this site are not real. This is a demonstration storefront. <br></br>
+              Originally forked from <a href="https://github.com/david-babunashvili/React-Redux-Ecommerce">React-Redux-Ecommerce</a>
             </p>
           </div>
       </footer>

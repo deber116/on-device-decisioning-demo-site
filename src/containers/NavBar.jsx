@@ -50,7 +50,7 @@ class NavBar extends Component {
 					<div className="container">
 						<div className="nav-left">
 							<Link to="/" className="nav-item">
-								<img src="https://cimage.adobe.com/acs/reactreduxdemo/logo.png" title="A Shop" alt="A Shop" />
+								<img src="/assets/images/logo.png" title="A Shop" alt="A Shop" />
 							</Link>
 						</div>
 						<div className={`nav-right nav-menu ${(this.state.showBar) ? 'is-active' : ''}`}>
@@ -61,10 +61,10 @@ class NavBar extends Component {
 								Products
 							</Link>
 							<Link to="/sdks" className="nav-item">
-								<strong>SDKs</strong>
+								<strong>Tools</strong>
 							</Link>
 							<Link to="/docs" className="nav-item">
-								<strong>Docs</strong>
+								<strong>Help</strong>
 							</Link>
 							<div key="NavBarCart" className="nav-item">
 								<Link to="/cart" className="button menu" >

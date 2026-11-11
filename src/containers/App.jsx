@@ -45,7 +45,7 @@ class App extends Component {
 
 		return (
 			<div>
-				<Helmet titleTemplate="ACS Demo - %s" />
+				<Helmet titleTemplate="A Shop - %s" defaultTitle="A Shop" />
 				<Laoding loading={this.props.loading} />
 				<NavBar />
 				<Switch>

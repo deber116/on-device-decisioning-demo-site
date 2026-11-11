@@ -227,12 +227,12 @@ class ProductList extends Component {
 					<div className="container">
 
 						<Slider data-section-name="jsx_homepagebanner_offer" {...settings}>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/easter.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/discount.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/happy.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/family.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/percent.png" /></div>
-							<div><img src="https://cimage.adobe.com/acs/reactreduxdemo/carousel/bigsale.png" /></div>
+							<div><img src="/assets/images/carousel/easter.png" /></div>
+							<div><img src="/assets/images/carousel/discount.png" /></div>
+							<div><img src="/assets/images/carousel/happy.png" /></div>
+							<div><img src="/assets/images/carousel/family.png" /></div>
+							<div><img src="/assets/images/carousel/percent.png" /></div>
+							<div><img src="/assets/images/carousel/bigsale.png" /></div>
 						</Slider>
 
 					</div>
