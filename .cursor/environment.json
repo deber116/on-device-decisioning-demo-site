@@ -1,12 +1,7 @@
 {
-  "name": "on-device-decisioning-demo",
+  "name": "product-shop-demo",
   "version": "1",
-  "install": "npm ci",
-  "egress": {
-    "allowedDomains": [
-      "assets.adobetarget.com"
-    ]
-  },
+  "install": "npm ci --legacy-peer-deps",
   "environmentVariables": {
     "NODE_OPTIONS": "--openssl-legacy-provider"
   }

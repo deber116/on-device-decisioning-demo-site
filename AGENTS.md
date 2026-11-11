@@ -2,18 +2,17 @@
 
 ## Overview
 
-This is a server-side-rendered React + Express demo of Adobe Target On-Device
-Decisioning. It is a single service; there is no separate frontend dev server,
+This is a server-side-rendered React + Express demo storefront for demonstrating
+Cursor Automations capabilities. It is a single service; there is no separate frontend dev server,
 database, or additional backend services to run. Perfect for demonstrating
-Cursor Automations capabilities.
+Cursor Automations capabilities in live presentations.
 
 ## Cursor Cloud specific instructions
 
 ### Environment setup
 The repository includes `.cursor/environment.json` with:
-- `npm ci` for dependency installation
-- Egress allowlist for `assets.adobetarget.com` (required for Target SDK)
-- `NODE_OPTIONS=--openssl-legacy-provider` set globally
+- `npm ci --legacy-peer-deps` for dependency installation (required due to simpleform React 15 peer dependency)
+- `NODE_OPTIONS=--openssl-legacy-provider` set globally for webpack builds
 
 ### Node / OpenSSL gotcha (important)
 The pinned toolchain node in this VM is Node 22 (`/exec-daemon/node`, always
@@ -25,20 +24,21 @@ first on `PATH`; `nvm` cannot override it). Webpack 5.16 fails on Node 17+ with
 plain `node ./server-build/index.js`) does NOT need the flag — only the webpack
 build steps do.
 
-The `.cursor/environment.json` sets this globally, so you typically don't need
-to set it manually in Cloud Agent environments.
+The `.cursor/environment.json` sets this globally, and the build scripts (`npm run build`, `npm run build-server`, `npm run ci`) also set it explicitly, so you typically don't need to set it manually.
 
 ## Build, run, and test
 
 ### Quick start
 ```bash
 # Install dependencies
-# Note: Use --legacy-peer-deps due to simpleform React 15 peer dependency conflict
 npm ci --legacy-peer-deps
 
-# Build everything
-NODE_OPTIONS=--openssl-legacy-provider npm run build
-NODE_OPTIONS=--openssl-legacy-provider npm run build-server
+# Build everything (build scripts set NODE_OPTIONS automatically)
+npm run build
+npm run build-server
+
+# Or use the CI script to build and test everything
+npm run ci
 
 # Start the server
 npm run start
@@ -46,12 +46,12 @@ npm run start
 
 ### Available scripts
 Standard scripts live in `package.json`:
-- **Build client bundle**: `NODE_OPTIONS=--openssl-legacy-provider npm run build` (production) or `npm run build-dev` (development)
-- **Build server bundle**: `NODE_OPTIONS=--openssl-legacy-provider npm run build-server` (production) or `npm run dev:build-server` (development)
+- **Build client bundle**: `npm run build` (production, sets NODE_OPTIONS automatically) or `npm run build-dev` (development)
+- **Build server bundle**: `npm run build-server` (production, sets NODE_OPTIONS automatically) or `npm run dev:build-server` (development)
 - **Full dev mode** (build client + build server + nodemon watch): `NODE_OPTIONS=--openssl-legacy-provider npm run dev`
 - **Run prebuilt server**: `npm run start` (serves on port 3006)
 - **Run smoke test**: `npm run test` (requires built server bundle)
-- **Run full CI suite**: `npm run ci` (builds everything and runs tests)
+- **Run full CI suite**: `npm run ci` (builds everything and runs tests, sets NODE_OPTIONS automatically)
 
 The repo ships a prebuilt `server-build/index.js`, so `npm run start` works
 without rebuilding. Rebuild the server bundle after editing `server/` or `src/`.
@@ -61,8 +61,7 @@ without rebuilding. Rebuild the server bundle after editing `server/` or `src/`.
 #### Automated tests
 - **Smoke test**: `npm run test` - Verifies the server builds, starts correctly, and serves the homepage
 - **Full CI**: `npm run ci` - Builds both client and server bundles, then runs the smoke test
-- Tests require outbound network access to `assets.adobetarget.com`
-- Smoke test includes 15-second startup timeout to allow for artifact download
+- Smoke test includes 30-second startup timeout
 
 #### Manual UI verification
 For visual/UI changes:
@@ -74,19 +73,8 @@ For visual/UI changes:
    - **Cart** (`/cart`): Shopping cart
    - **Wishlist** (`/wishlist`): Saved items
 
-The homepage carousel and top banner are common targets for demo changes (e.g.,
-adding a holiday banner or promotional message).
-
-### Startup behavior
-The Express app only calls `listen()` inside the Target SDK `clientReady` event,
-which fires after the on-device decisioning artifact is fetched from
-`assets.adobetarget.com`. 
-
-**What this means**:
-- The server needs outbound network access on first start
-- "Server is listening on port 3006" appears a few seconds after launch
-- You'll see "Target Artifact Downloaded!" just before the server starts
-- In rare cases, if Adobe's artifact server is down or slow, startup may fail
+The homepage carousel and top area are common targets for demo changes (e.g.,
+adding a promotional banner or seasonal message).
 
 ### Port configuration
 Port is `3006`, defined in `src/config/server.js` (overridable via `PORT` env
@@ -101,7 +89,7 @@ The repository includes `.github/workflows/ci.yml` that runs on:
 
 The workflow:
 1. Sets up Node.js 22 (matching Cloud Agent environments)
-2. Installs dependencies with `npm ci`
+2. Installs dependencies with `npm ci --legacy-peer-deps`
 3. Builds client bundle with OpenSSL legacy provider flag
 4. Builds server bundle with OpenSSL legacy provider flag
 5. Runs the smoke test (starts server and verifies homepage)
@@ -120,7 +108,7 @@ When demonstrating Cursor Automations with a PM persona, typical changes include
    - Add promotional banners, seasonal messaging, CTAs
 
 2. **Navigation updates**
-   - File: `src/components/layout/Header.js`
+   - File: `src/containers/NavBar.jsx`
    - Add new nav items, update menu structure
 
 3. **Product display modifications**
@@ -128,7 +116,7 @@ When demonstrating Cursor Automations with a PM persona, typical changes include
    - Change product card layout, add badges, modify pricing display
 
 4. **Footer content**
-   - File: `src/components/layout/Footer.js`
+   - File: `src/components/Footer.jsx`
    - Update links, add social media, modify copy
 
 ### Verification after changes
@@ -140,17 +128,6 @@ When demonstrating Cursor Automations with a PM persona, typical changes include
 
 ## Known limitations and demo risks
 
-### Critical: Adobe Target artifact dependency
-- **Risk**: Server startup requires fetching artifact from `assets.adobetarget.com`
-- **Mitigation**: Ensure outbound network access; `.cursor/environment.json` includes this domain in egress allowlist
-- **If it fails**: Server will not start; very rare but possible if Adobe's CDN is down
-- **Demo impact**: Medium - startup would fail, but can be retried
-
-### GitHub Issues
-- **Current state**: Unknown if Issues are enabled on this fork
-- **Required for**: Issue-triggered automations
-- **Action needed**: David must enable Issues in repo settings if not already enabled
-
 ### No linting
 - **Current state**: No ESLint or Prettier configured
 - **Impact**: Code style consistency not enforced
@@ -161,7 +138,7 @@ When demonstrating Cursor Automations with a PM persona, typical changes include
 - **Impact**: Warning only, doesn't affect functionality
 - **Demo impact**: None - warning is cosmetic
 
-### Old dependencies and peer dependency conflicts
+### Old dependencies
 - **Current state**: React 16, old versions of various packages; simpleform@0.1.3 has React 15 peer dependency
 - **Impact**: Functional but dated; works fine for demo purposes; requires `--legacy-peer-deps` for fresh installs
 - **Demo impact**: None - system is stable and GitHub Actions CI handles this automatically

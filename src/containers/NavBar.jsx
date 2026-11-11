@@ -51,7 +51,6 @@ class NavBar extends Component {
 						<div className="nav-left">
 							<Link to="/" className="nav-item">
 								<img src="https://cimage.adobe.com/acs/reactreduxdemo/logo.png" title="A Shop" alt="A Shop" />
-								<img src="https://cimage.adobe.com/acs/reactreduxdemo/adobev1-on-device.png" title="Demo for Adobe Target On Device Decisioning capabilites" alt="Demo for Adobe Target On Device Decisioning capabilites" />
 							</Link>
 						</div>
 						<div className={`nav-right nav-menu ${(this.state.showBar) ? 'is-active' : ''}`}>
@@ -84,10 +83,6 @@ class NavBar extends Component {
 						</div>
 					</div>
 				</nav>
-				<br></br>
-				<div className="notice container">
-					This website demonstrates Adobe Target's On Device Decisioning capabilites
-				</div>
 				<br></br>
 			</div>
 

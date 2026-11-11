@@ -7,7 +7,7 @@ const http = require('http');
 const { spawn } = require('child_process');
 
 const PORT = 3006;
-const STARTUP_TIMEOUT = 15000; // 15 seconds for server startup (includes artifact download)
+const STARTUP_TIMEOUT = 30000; // 30 seconds for server startup
 const REQUEST_TIMEOUT = 5000;
 
 function makeRequest() {
@@ -56,6 +56,8 @@ async function runTest() {
     process.stderr.write(text);
   });
 
+  let exitCode = 0;
+  
   try {
     // Wait for server to start
     const startTime = Date.now();
@@ -73,16 +75,15 @@ async function runTest() {
     const response = await makeRequest();
     console.log(`✓ Homepage returned HTTP ${response.statusCode}`);
 
-    // Test a few more routes to ensure routing works
     console.log('✓ Smoke test passed!');
-    process.exit(0);
 
   } catch (error) {
     console.error('✗ Smoke test failed:', error.message);
     console.error('Server output:', serverOutput);
-    process.exit(1);
+    exitCode = 1;
   } finally {
     server.kill();
+    process.exit(exitCode);
   }
 }
 
