@@ -48,6 +48,11 @@ function startApp() {
     res.sendFile(path.resolve('./public/favicon.ico'));
   });
 
+  // Serve products catalog JSON
+  app.get('/products.json', (req, res) => {
+    res.sendFile(path.resolve('./public/products.json'));
+  });
+
   app.get('/*', (req, res) => {
 
     // Empty attributes object - personalization features removed
