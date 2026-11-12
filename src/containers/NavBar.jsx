@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchCart } from '../actions/fetchCart'
 import { fetchWishlist } from '../actions/fetchWishlist'
+import { applyTheme, isDarkTheme } from '../utils/theme'
 
 /**
  * Create NavBar Container
@@ -20,7 +21,8 @@ class NavBar extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			showBar: false
+			showBar: false,
+			darkMode: isDarkTheme()
 		}
 	}
 	componentDidMount() {
@@ -41,6 +43,11 @@ class NavBar extends Component {
 				showBar: true
 			})
 		}
+	}
+	toggleTheme() {
+		const darkMode = !this.state.darkMode
+		applyTheme(darkMode ? 'dark' : 'light')
+		this.setState({ darkMode })
 	}
 	render() {
 		return (
@@ -80,6 +87,20 @@ class NavBar extends Component {
 									<span className="tag is-light">{Object.keys(this.props.wishlist).length}</span>
 								</Link>
 							</div>
+						</div>
+						<div className="nav-theme">
+							<button
+								type="button"
+								className="button theme-toggle"
+								aria-pressed={this.state.darkMode}
+								aria-label={this.state.darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+								onClick={this.toggleTheme.bind(this)}
+							>
+								<span className="icon">
+									<i className={`fa ${this.state.darkMode ? 'fa-sun-o' : 'fa-moon-o'}`} aria-hidden="true"></i>
+								</span>
+								<span>{this.state.darkMode ? 'Light' : 'Dark'}</span>
+							</button>
 						</div>
 					</div>
 				</nav>

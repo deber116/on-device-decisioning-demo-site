@@ -187,3 +187,217 @@ body{
  0%   { visibility : visible; }
   100% { visibility : hidden; }
 }
+
+.nav-theme {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem 0.5rem 0;
+}
+
+.theme-toggle {
+  background-color: #fff;
+  border-color: #dbdbdb;
+  color: #363636;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  background-color: #f5f5f5;
+  border-color: #b5b5b5;
+  color: #363636;
+}
+
+.product-count {
+  margin-top: 1rem;
+  color: #666;
+}
+
+html.theme-dark {
+  color-scheme: dark;
+  background-color: #16181d;
+}
+
+html.theme-dark body,
+html.theme-dark .section {
+  background-color: #16181d;
+  color: #e6e6e6;
+}
+
+html.theme-dark .nav,
+html.theme-dark .nav-menu {
+  background-color: #1c1f26;
+}
+
+html.theme-dark .nav.has-shadow {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
+}
+
+html.theme-dark .nav-item a,
+html.theme-dark a.nav-item {
+  color: #d0d4dc;
+}
+
+html.theme-dark .nav-item a:hover,
+html.theme-dark a.nav-item:hover,
+html.theme-dark .nav-item a.is-active,
+html.theme-dark a.nav-item.is-active {
+  color: #ffffff;
+}
+
+html.theme-dark .nav-item img {
+  background: #fff;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+html.theme-dark .theme-toggle {
+  background-color: #2a2e38;
+  border-color: #4a5160;
+  color: #f2f2f2;
+}
+
+html.theme-dark .theme-toggle:hover,
+html.theme-dark .theme-toggle:focus {
+  background-color: #353a46;
+  border-color: #6a7284;
+  color: #ffffff;
+}
+
+html.theme-dark .footer {
+  background-color: #1c1f26;
+  color: #c8cdd6;
+}
+
+html.theme-dark .footer a {
+  color: #7ddecf;
+}
+
+html.theme-dark .footer a:hover {
+  color: #b8f3ea;
+}
+
+html.theme-dark .title,
+html.theme-dark .subtitle,
+html.theme-dark .subtitle strong,
+html.theme-dark strong {
+  color: #f2f2f2;
+}
+
+html.theme-dark .card {
+  background-color: #242830;
+  color: #e6e6e6;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+html.theme-dark .content,
+html.theme-dark .content h1,
+html.theme-dark .content h2,
+html.theme-dark .content h3,
+html.theme-dark .content h4,
+html.theme-dark .content h5,
+html.theme-dark .content h6 {
+  color: #e6e6e6;
+}
+
+html.theme-dark .card .title a {
+  color: #7ddecf;
+}
+
+html.theme-dark .card .title a:hover {
+  color: #b8f3ea;
+}
+
+html.theme-dark .table {
+  background-color: #1c1f26;
+  color: #e6e6e6;
+}
+
+html.theme-dark .table td,
+html.theme-dark .table th {
+  border-color: #3a3f4b;
+  color: #e6e6e6;
+}
+
+html.theme-dark .table tr:hover,
+html.theme-dark .table.is-striped tbody tr:nth-child(even) {
+  background-color: #2a2e38;
+}
+
+html.theme-dark .cart-table a,
+html.theme-dark .cart-table a:hover,
+html.theme-dark .cart-table a:focus {
+  color: #cd1e27;
+}
+
+html.theme-dark .cart-item-thumb {
+  background: #2a2e38;
+}
+
+html.theme-dark .pagination-link,
+html.theme-dark .pagination-next,
+html.theme-dark .pagination-previous {
+  background-color: #242830;
+  border-color: #3a3f4b;
+  color: #e6e6e6;
+}
+
+html.theme-dark .pagination-link:hover,
+html.theme-dark .pagination-next:hover,
+html.theme-dark .pagination-previous:hover {
+  border-color: #6a7284;
+  color: #ffffff;
+}
+
+html.theme-dark .pagination-link.is-current {
+  background-color: #00d1b2;
+  border-color: #00d1b2;
+  color: #fff;
+}
+
+html.theme-dark .pagination-link[disabled],
+html.theme-dark .pagination-next[disabled],
+html.theme-dark .pagination-previous[disabled] {
+  background: #2a2e38;
+  border-color: #3a3f4b;
+  color: #8b909a;
+}
+
+html.theme-dark .product-count {
+  color: #b8bcc4;
+}
+
+html.theme-dark .form-control {
+  background-color: #242830;
+  border-color: #4a5160;
+  color: #f2f2f2;
+}
+
+html.theme-dark .form-control:focus {
+  background-color: #242830;
+  border-color: #7ddecf;
+  color: #f2f2f2;
+  box-shadow: 0 0 0 0.2rem rgba(125, 222, 207, 0.25);
+}
+
+html.theme-dark label {
+  color: #e6e6e6;
+}
+
+html.theme-dark .loading-wrapper {
+  background: #16181d;
+  color: #e6e6e6;
+}
+
+html.theme-dark .notice {
+  background-color: #1a3338;
+  color: #9ad7e8;
+}
+
+html.theme-dark .slick-dots li button:before {
+  color: #c8cdd6;
+}
+
+html.theme-dark .slick-dots li.slick-active button:before {
+  color: #ffffff;
+}
