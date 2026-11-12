@@ -293,7 +293,7 @@ class ProductList extends Component {
 											))}
 										</ul>
 									</nav>
-									<p className="has-text-centered" style={{ marginTop: '1rem', color: '#666' }}>
+									<p className="has-text-centered product-range">
 										Showing {startIndex + 1}-{Math.min(endIndex, products.length)} of {products.length} products
 									</p>
 								</div>

@@ -20,13 +20,40 @@ class NavBar extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			showBar: false
+			showBar: false,
+			theme: this.readTheme()
 		}
+		this.toggleTheme = this.toggleTheme.bind(this)
+	}
+	readTheme() {
+		if (typeof window === 'undefined') {
+			return 'light'
+		}
+		try {
+			return window.localStorage.getItem('ashop-theme') === 'dark' ? 'dark' : 'light'
+		} catch (err) {
+			return 'light'
+		}
+	}
+	applyTheme(theme) {
+		if (typeof document === 'undefined') {
+			return
+		}
+		document.documentElement.classList.toggle('theme-dark', theme === 'dark')
+		try {
+			window.localStorage.setItem('ashop-theme', theme)
+		} catch (err) {}
+	}
+	toggleTheme() {
+		const next = this.state.theme === 'dark' ? 'light' : 'dark'
+		this.applyTheme(next)
+		this.setState({ theme: next })
 	}
 	componentDidMount() {
 		const { dispatch } = this.props
 		dispatch(fetchCart())
 		dispatch(fetchWishlist())
+		this.applyTheme(this.state.theme)
 	}
 	componentDidUpdate() {
 
@@ -80,6 +107,20 @@ class NavBar extends Component {
 									<span className="tag is-light">{Object.keys(this.props.wishlist).length}</span>
 								</Link>
 							</div>
+						</div>
+						<div className="nav-item theme-toggle-slot">
+							<button
+								type="button"
+								className="button theme-toggle"
+								onClick={this.toggleTheme}
+								aria-pressed={this.state.theme === 'dark'}
+								aria-label={this.state.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+							>
+								<span className="icon">
+									<i className={this.state.theme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o'} aria-hidden="true"></i>
+								</span>
+								<span>{this.state.theme === 'dark' ? 'Light' : 'Dark'}</span>
+							</button>
 						</div>
 					</div>
 				</nav>
