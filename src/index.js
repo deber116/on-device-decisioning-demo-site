@@ -14,6 +14,7 @@ import TargetContext from './contexts/TargetContext';
 import { Provider } from 'react-redux'
 import store from './store'
 import { BrowserRouter } from 'react-router-dom'
+import { initializePendo } from './pendo'
 
 /**
  * Client-Side Application Initialization
@@ -43,6 +44,7 @@ window['ASHOP_APP'] = window['ASHOP_APP'] || (() => {
      * @param {Object} targetAttributes - Target personalization data from server
      */
     initialize: (targetAttributes) => {
+      initializePendo();
       ReactDOM.render(
         <Provider store={store}>
           <TargetContext.Provider value={targetAttributes} >

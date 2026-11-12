@@ -12,6 +12,62 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
     <link rel="stylesheet" href="assets/css/base.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <script>
+    (function (apiKey) {
+        // Pendo install snippet. Queue format matches the current agent (_q entries
+        // are arrays like ["initialize", config]). Load the agent once; if pendo is
+        // already present, reuse it and apply this apiKey via initialize.
+        (function (p, e, n, d, o) {
+            var v, w, x, y, z;
+            o = p[d] = p[d] || {};
+            o._q = o._q || [];
+            v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track', 'clearSession'];
+            for (w = 0, x = v.length; w < x; ++w) (function (m) {
+                o[m] = o[m] || function () {
+                    (o._q = o._q || [])[m === 'initialize' ? 'unshift' : 'push'](
+                        [].concat.apply([m], arguments)
+                    );
+                };
+            })(v[w]);
+            if (!e.getElementById('pendo-agent-script')) {
+                y = e.createElement(n);
+                y.id = 'pendo-agent-script';
+                y.async = !0;
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            }
+        })(window, document, 'script', 'pendo');
+
+        function getPendoVisitorId() {
+            var key = 'pendo_visitor_id';
+            try {
+                var id = window.localStorage.getItem(key);
+                if (!id) {
+                    id = (window.crypto && typeof window.crypto.randomUUID === 'function')
+                        ? 'visitor-' + window.crypto.randomUUID()
+                        : 'visitor-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+                    window.localStorage.setItem(key, id);
+                }
+                return id;
+            } catch (err) {
+                return 'visitor-anonymous';
+            }
+        }
+
+        pendo.initialize({
+            apiKey: apiKey,
+            visitor: {
+                id: getPendoVisitorId(),
+                role: 'Product Manager'
+            },
+            account: {
+                id: 'a-shop-demo',
+                name: 'A Shop'
+            }
+        });
+    })('74924fb4-e18c-42b1-664b-47ed918c3a45');
+    </script>
 </head>
 <body>
     <div id="app"></div>
